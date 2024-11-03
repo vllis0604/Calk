@@ -3,12 +3,12 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner calk1 = new Scanner(System.in);
-        while (true) { // Бесконечный цикл
-            System.out.print("Введите выражение (или введите 'Выход' для завершения): ");
+        while (true) {
+            System.out.print("Р’РІРµРґРёС‚Рµ РІС‹СЂР°Р¶РµРЅРёРµ (РёР»Рё РІРІРµРґРёС‚Рµ 'Р’С‹С…РѕРґ' РґР»СЏ Р·Р°РІРµСЂС€РµРЅРёСЏ): ");
             String calk = calk1.nextLine();
 
-            if (calk.equalsIgnoreCase("Выход")) {
-                break; // Выход из цикла
+            if (calk.equalsIgnoreCase("Р’С‹С…РѕРґ")) {
+                break; 
             }
 
             try {
@@ -28,20 +28,18 @@ public class Main {
                     data = calk.split(" / ");
                     action = '/';
                 } else {
-                    throw new Exception("Некорректный знак действия");
+                    throw new Exception("РќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ Р·РЅР°Рє РґРµР№СЃС‚РІРёСЏ");
                 }
-
-                // Проверяем, соответствует ли строка правильному формату
+                
                 if (data.length != 2 || !data[0].startsWith("\"") || !data[0].endsWith("\"")) {
-                    throw new Exception("Первым аргументом выражения, подаваемого на вход, должна быть строка.");
+                    throw new Exception("РџРµСЂРІС‹Рј Р°СЂРіСѓРјРµРЅС‚РѕРј РІС‹СЂР°Р¶РµРЅРёСЏ, РїРѕРґР°РІР°РµРјРѕРіРѕ РЅР° РІС…РѕРґ, РґРѕР»Р¶РЅР° Р±С‹С‚СЊ СЃС‚СЂРѕРєР°.");
                 }
 
-                // Удаляем кавычки
                 String str1 = data[0].replace("\"", "");
                 String str2 = data[1].replace("\"", "");
 
                 if (str1.length() > 10) {
-                    throw new Exception("Строки должны быть не длиннее 10 символов.");
+                    throw new Exception("РЎС‚СЂРѕРєРё РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РЅРµ РґР»РёРЅРЅРµРµ 10 СЃРёРјРІРѕР»РѕРІ.");
                 }
 
                 if (action == '*' || action == '/') {
@@ -54,16 +52,16 @@ public class Main {
                     printInQuotes(result.isEmpty() ? str1 : result);
                 }
             } catch (Exception e) {
-                System.out.println("Ошибка: " + e.getMessage()); // Обработка исключений
+                System.out.println("РћС€РёР±РєР°: " + e.getMessage()); // РћР±СЂР°Р±РѕС‚РєР° РёСЃРєР»СЋС‡РµРЅРёР№
             }
         }
-        calk1.close(); // Закрываем сканер перед завершением программы
+        calk1.close();
     }
 
     private static int parseAndValidateNumber(String str, char action) throws Exception {
         int num = Integer.parseInt(str);
         if (num < 1 || num > 10) {
-            throw new Exception("Число должно быть от 1 до 10.");
+            throw new Exception("Р§РёСЃР»Рѕ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РѕС‚ 1 РґРѕ 10.");
         }
         return num;
     }
@@ -74,7 +72,7 @@ public class Main {
             printWithLimit(result);
         } else if (action == '/') {
             if (number == 0) {
-                throw new Exception("Делить на 0 нельзя.");
+                throw new Exception("Р”РµР»РёС‚СЊ РЅР° 0 РЅРµР»СЊР·СЏ.");
             }
             int newLength = str1.length() / number;
             String result = str1.substring(0, Math.min(newLength, str1.length()));
@@ -83,7 +81,7 @@ public class Main {
     }
 
     private static void printWithLimit(String text) {
-        System.out.print("Результат: "); // Добавлено
+        System.out.print("Р РµР·СѓР»СЊС‚Р°С‚: "); 
         if (text.length() > 40) {
             System.out.println(text.substring(0, 40) + "...");
         } else {
@@ -92,7 +90,7 @@ public class Main {
     }
 
     static void printInQuotes(String text) {
-        System.out.print("Результат: "); // Добавлено
+        System.out.print("Р РµР·СѓР»СЊС‚Р°С‚: ");
         System.out.println("\"" + text + "\"");
     }
 }
