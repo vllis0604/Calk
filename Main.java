@@ -52,7 +52,7 @@ public class Main {
                     printInQuotes(result.isEmpty() ? str1 : result);
                 }
             } catch (Exception e) {
-                System.out.println("Ошибка: " + e.getMessage()); // Обработка исключений
+                System.out.println("Ошибка: " + e.getMessage()); 
             }
         }
         calk1.close();
